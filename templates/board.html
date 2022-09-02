@@ -1,0 +1,49 @@
+{% extends "base.html" %} {% block title %}Boggle Board{% endblock title %} {%
+block content %}
+
+<main id="boggle">
+  <header>
+    <h1 class="title">Boggle!</h1>
+    <h2 class="game-number">Game number: {{game_num}}</h2>
+    <h2 class="highscore">Highscore: {{highscore}}</h2>
+  </header>
+
+  <i>You can also select letters by clicking on them!</i>
+
+  <section>
+    <h3>Score: <b class="score">0</b></h3>
+    <h3>Timer: <b class="timer"></b></h3>
+
+    <table>
+      <tbody>
+        {% for row in session["board"] %}
+        <tr>
+          {% for cell in row %}
+          <td onclick="getText(this)">{{cell}}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <form method="POST">
+      <input type="text" name="guess" />
+      <button>Guess!</button>
+    </form>
+
+    <div>
+      <p class="alerts">
+        <!-- alerts -->
+      </p>
+
+      <ul>
+        <!-- list of guesses -->
+      </ul>
+    </div>
+
+    <button onclick="window.location.reload()" class="reset" hidden>
+      Reset!
+    </button>
+  </section>
+</main>
+{% endblock content %}
